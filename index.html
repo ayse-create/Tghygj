@@ -1,49 +1,105 @@
 <!doctype html>
 <html lang="tr">
- <head><script src="/_sdk/telemetry_sdk.js"></script>
+<head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Sayfa Bulunamadı</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
-  <style>
-        body { font-family: 'DM Sans', sans-serif; }
-        @keyframes subtle-bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
+  <title>404 - ProfessorCat</title>
 
-        .cement-bg {
-            background: linear-gradient(135deg, #e8e8e8 0%, #d4d4d4 100%);
-            position: relative;
-        }
-        .cement-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(100,100,100,0.05) 1px, transparent 1px),
-                radial-gradient(circle at 60% 70%, rgba(100,100,100,0.05) 1px, transparent 1px),
-                radial-gradient(circle at 80% 20%, rgba(100,100,100,0.05) 1px, transparent 1px),
-                radial-gradient(circle at 40% 30%, rgba(100,100,100,0.05) 1px, transparent 1px);
-            background-size: 200px 200px;
-            pointer-events: none;
-        }
-    </style>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="/_sdk/resizing_sdk.js" type="text/javascript"></script>
- </head>
- <body data-template-id="__page-root" class="cement-bg min-h-screen flex items-center justify-center px-6">
-  <main class="text-center max-w-2xl mx-auto">
-   <div class="mb-8">
-    <img data-template-id="cat-image" class="canva-image w-full max-w-md h-auto object-contain mx-auto" loading="lazy">
-   </div>
-   <h1 data-template-id="site-title" class="canva-text text-3xl sm:text-4xl font-black mb-2"><span class="text-black">Professor</span><span class="text-gray-500">Cat</span></h1>
-   <p data-template-id="error-title" class="canva-text text-5xl sm:text-6xl font-bold mb-2"></p>
-   <p data-template-id="error-description" class="canva-text text-base sm:text-lg text-gray-600 mb-6"></p>
-   <p data-template-id="error-code" class="canva-text text-[48rem] sm:text-[64rem] font-black leading-none select-none mb-4"></p><a data-template-id="home-button" class="canva-button inline-block px-2 py-1 rounded-none font-semibold transition text-base" href="#" style="background: none; border: none;"><span class="text-black underline">Ana Sayfaya</span><span class="text-gray-500 underline"> Dön</span></a>
-  </main>
-  <script src="/_sdk/editing_sdk.js"></script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0aa20155547b737',t:'MTc4MTI4MDYyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  <!-- Arista Pro yoksa fallback font çalışır -->
+  <style>
+    body {
+      margin: 0;
+      background: #d9d9d9;
+      font-family: "Arista Pro", Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      max-width: 500px;
+    }
+
+    img {
+      width: 180px;
+      margin-top: -40px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .title .prof {
+      color: #000;
+    }
+
+    .title .cat {
+      color: #777;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .error {
+      font-size: 90px;
+      color: #888;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .link {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .link a {
+      text-decoration: underline;
+      color: #777;
+      cursor: pointer;
+    }
+
+    .link span {
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Görsel -->
+    <img src="ProfesorCat kopyası.png" alt="ProfessorCat">
+
+    <!-- Başlık -->
+    <div class="title">
+      <span class="prof">Professor</span><span class="cat">Cat</span>
+    </div>
+
+    <!-- Açıklama -->
+    <div class="subtitle">
+      Sayfa bulunamadı. Taşınmış veya kaldırılmış olabilir.
+    </div>
+
+    <!-- 404 -->
+    <div class="error">404</div>
+
+    <!-- Link -->
+    <div class="link">
+      <a href="https://ayse-create.github.io/WhiskerSearch/">
+        <span>anasayfaya</span> dön
+      </a>
+    </div>
+
+  </div>
+
+</body>
 </html>
