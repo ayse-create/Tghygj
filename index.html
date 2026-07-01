@@ -243,7 +243,6 @@
     </div>
 
 <script>
-    // İki ayrı konuşma dizisi – sıfır mesaj ile başlıyor
     let messages = {
         '888': [],
         '555': []
@@ -296,20 +295,30 @@
     function addMessage(contact, text, sender) {
         if (!messages[contact]) messages[contact] = [];
         messages[contact].push({ text, sender });
-        if (currentContact === contact) renderMessages(contact);
     }
 
     function sendMessage() {
         if (!currentContact) return;
         const text = messageInput.value.trim();
         if (text === '') return;
-        
-        // Mesajı gönderen kişiye ekle
+
+        // Mesajı yazılan kişiye (currentContact) ekle
         addMessage(currentContact, text, 'sent');
         messageInput.value = '';
 
-        // Karşı tarafa mesaj gitmiş gibi simüle et (ama otomatik cevap yok)
-        // Sadece karşı tarafın mesajlarını görmek için başka bir şey yapmıyoruz
+        // Karşı tarafa (diğer numara) mesaj gitmiş gibi simüle et
+        const otherContact = currentContact === '888' ? '555' : '888';
+        // Karşı tarafın mesajlarını güncelle (received olarak)
+        addMessage(otherContact, text, 'received');
+
+        // Eğer karşı taraf açık değilse, mesaj kaydedilir ama görünmez
+        // Sadece currentContact değiştiğinde render edilir
+        if (currentContact === otherContact) {
+            renderMessages(otherContact);
+        } else {
+            // Mevcut kontağı render et (değişen bir şey yok ama göster)
+            renderMessages(currentContact);
+        }
     }
 
     contactChips.forEach(chip => {
@@ -323,7 +332,6 @@
         if (e.key === 'Enter') sendMessage();
     });
 
-    // Başlangıçta 888 seçili
     switchContact('888');
 </script>
 
