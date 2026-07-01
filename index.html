@@ -68,7 +68,6 @@
             cursor: pointer;
         }
 
-        /* Kişi seçimi */
         .contact-list {
             display: flex;
             gap: 12px;
@@ -102,7 +101,6 @@
             background: #e8e4f0;
         }
 
-        /* Mesajlar */
         .messages {
             flex: 1;
             overflow-y: auto;
@@ -150,7 +148,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Giriş alanı */
         .input-area {
             display: flex;
             align-items: center;
@@ -198,7 +195,6 @@
         }
 
         .empty-state {
-            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -206,6 +202,7 @@
             font-size: 15px;
             flex-direction: column;
             gap: 8px;
+            height: 100%;
         }
 
         .empty-state .big-icon { font-size: 48px; }
@@ -236,7 +233,7 @@
     <div class="messages" id="messageContainer">
         <div class="empty-state">
             <div class="big-icon">💬</div>
-            <div>Bir kişi seçin</div>
+            <div>Henüz mesaj yok</div>
         </div>
     </div>
 
@@ -246,16 +243,10 @@
     </div>
 
 <script>
-    // İki ayrı konuşma dizisi
+    // İki ayrı konuşma dizisi – sıfır mesaj ile başlıyor
     let messages = {
-        '888': [
-            { text: 'Merhaba!', sender: 'received' },
-            { text: 'Nasılsın?', sender: 'sent' }
-        ],
-        '555': [
-            { text: 'Selam!', sender: 'received' },
-            { text: 'İyi gidiyor.', sender: 'sent' }
-        ]
+        '888': [],
+        '555': []
     };
 
     let currentContact = '888';
@@ -302,7 +293,6 @@
         messageInput.focus();
     }
 
-    // Mesaj ekleme (gönderen ve alıcı mantığı burada)
     function addMessage(contact, text, sender) {
         if (!messages[contact]) messages[contact] = [];
         messages[contact].push({ text, sender });
@@ -314,20 +304,12 @@
         const text = messageInput.value.trim();
         if (text === '') return;
         
-        // Gönderen: currentContact (yani tıkladığın kişi)
-        // Alıcı: diğer numara
+        // Mesajı gönderen kişiye ekle
         addMessage(currentContact, text, 'sent');
         messageInput.value = '';
 
-        // Karşı taraftan cevap geliyor (karşı numaraya)
-        const otherContact = currentContact === '888' ? '555' : '888';
-        setTimeout(() => {
-            const replies = ['Anladım.', 'Peki.', 'Harika!', 'Hmm.', 'Tamam.', '👀', '😺', 'Devam et.', '👍'];
-            const reply = replies[Math.floor(Math.random() * replies.length)];
-            // Cevap, karşı numaraya gidiyor
-            addMessage(otherContact, reply, 'received');
-            // Eğer karşı numara açık değilse, mesaj yine de kaydediliyor
-        }, 800 + Math.random() * 400);
+        // Karşı tarafa mesaj gitmiş gibi simüle et (ama otomatik cevap yok)
+        // Sadece karşı tarafın mesajlarını görmek için başka bir şey yapmıyoruz
     }
 
     contactChips.forEach(chip => {
@@ -341,6 +323,7 @@
         if (e.key === 'Enter') sendMessage();
     });
 
+    // Başlangıçta 888 seçili
     switchContact('888');
 </script>
 
